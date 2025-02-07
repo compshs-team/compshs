@@ -46,8 +46,9 @@ jobs:
           -   name: Build sdist
               run: |
                 python -m pip install .
+                python -m pip install build
                 python -m pip install -r requirements_dev.txt .
-                python -Im build
+                python -m build
 
           -   uses: actions/upload-artifact@v4
               with:
