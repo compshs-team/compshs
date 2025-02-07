@@ -11,6 +11,7 @@ flake8==4.0.1
 tox==3.25.1
 pytest-runner==6.0.0
 pytest==7.1.2
+pytest-cov>=3.0.0
 
 # Deployment
 pip==23.3.1
