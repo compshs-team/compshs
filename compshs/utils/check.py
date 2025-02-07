@@ -8,4 +8,7 @@ import warnings
 
 
 def is_zero(value: int) -> bool:
-    return value == 0
+    if not isinstance(value, int):
+        raise TypeError(f'Expected an integer but got {type(value).__name__}.')
+    else:
+        return value == 0
