@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 
 """The setup script."""
-import ensurepip
-
-ensurepip.bootstrap()
 
 from setuptools import setup, find_packages
 
