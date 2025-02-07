@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        if [[ "$(python --version)" >= *"3.12"* ]]; then
+        if python -c 'import sys; print(sys.version)' | grep -q '3.12'; then
             python -m pip install setuptools wheel
         fi
         python -m pip install flake8
