@@ -1,0 +1,38 @@
+[build-system]
+requires = [
+    "numpy",
+    "setuptools",
+    "pytest-runner",
+]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "compshs"
+version = "0.0.1"
+dependencies = ['numpy>=1.22.4']
+authors = [{name = "CompSHS team"}]
+maintainers = [{name = "Simon Delarue", email = "simon.delarue@telecom-paris.fr"}]
+description = "Computational Social Sciences"
+readme = "README.rst"
+license = {text = "BSD License"}
+keywords = ["compshs"]
+classifiers=[
+    'Development Status :: 2 - Pre-Alpha',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: BSD License',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12'
+]
+requires-python = ">= 3.9"
+
+[project.optional-dependencies]
+test = ["pytest", "note", "pluggy>=0.7.1"]
+
+[project.urls]
+Repository = "https://github.com/compshs-team/compshs"
+Documentation = "https://compshs.readthedocs.io/"
+Changelog = "https://github.com/compshs-team/compshs/blob/master/HISTORY.rst"
