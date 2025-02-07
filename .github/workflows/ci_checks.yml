@@ -16,6 +16,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    # Clean up previous build artifacts
+    - name: Clean previous build artifacts
+      run: |
+        rm -rf *.egg-info
+        rm -rf build dist
+        pip cache purge
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
