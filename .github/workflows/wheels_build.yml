@@ -33,10 +33,10 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: wheel-${{ matrix.os }}-${{ matrix.python-version }}
-                  with: dist-${{ matrix.os }}-${{ matrix.python-version }}
-                  path: wheels/
+                  path: wheels/*.whl
 
-            -   name: Upload sdist
-                uses: actions/upload-artifact@v4
-                with:
-                    path: dist/
+            - name: Upload sdist
+              uses: actions/upload-artifact@v4
+              with:
+                  name: sdist-${{ matrix.os }}-${{ matrix.python-version }}
+                  path: dist/*.tar.gz
