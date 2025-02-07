@@ -2,8 +2,7 @@
 requires = [
     "numpy",
     "setuptools",
-    "wheel",
-    "pytest-runner",
+    "wheel"
 ]
 build-backend = "setuptools.build_meta"
 
@@ -30,7 +29,7 @@ classifiers=[
 ]
 requires-python = ">= 3.9"
 
-[project]
+[tools.setuptools]
 packages = ["compshs"]
 
 [project.optional-dependencies]
@@ -42,10 +41,7 @@ test = ["pytest",
         "sphinx_rtd_theme==1.0",
         "numpydoc==1.4.0",
         "flake8==4.0.1",
-        "pytest-runner>=5.3.1",
-        "pytest>=6.2.5",
         "pytest-cov>=3.0.0",
-        "pip==23.3.1",
         "bumpversion==0.6",
         "wheel==0.38.2"
 ]
