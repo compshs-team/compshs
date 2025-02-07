@@ -47,8 +47,7 @@ jobs:
               run: |
                 python -m pip install .
                 python -m pip install -r requirements_dev.txt .
-                python -c "import build; print(build.__path__)"
-                python -m build
+                python -Im build
 
           -   uses: actions/upload-artifact@v4
               with:
