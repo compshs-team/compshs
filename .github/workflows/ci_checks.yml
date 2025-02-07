@@ -28,8 +28,6 @@ jobs:
         python setup.py develop
     - name: Test with pytest
       run: |
-        py.test --doctest-modules --cov-report=xml --cov=compshs
+        pytest --doctest-modules --cov=compshs --cov-report=xml
     - name: Codecov
       uses: codecov/codecov-action@v4
-      env: 
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
