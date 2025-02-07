@@ -33,7 +33,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: wheel-${{ matrix.os }}-${{ matrix.python-version }}
-                  path: wheels/*.whl
+                  path: dist/*.whl
 
             - name: Upload sdist
               uses: actions/upload-artifact@v4
