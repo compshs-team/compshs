@@ -1,2 +1,2 @@
 """utils module"""
-from sknetwork.utils.check import *
+from compshs.utils.check import *
