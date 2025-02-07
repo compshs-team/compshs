@@ -1,0 +1,17 @@
+tqdm>=4.64
+
+# Documentation
+sphinx==5.0.2
+sphinx_rtd_theme==1.0
+numpydoc==1.4.0
+
+# Tests
+flake8==4.0.1
+pytest-runner>=5.3.1
+pytest>=6.2.5
+pytest-cov>=3.0.0
+
+# Deployment
+pip==23.3.1
+bumpversion==0.6
+wheel==0.38.2
