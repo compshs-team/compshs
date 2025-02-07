@@ -10,7 +10,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "compshs"
 version = "0.0.1"
-dependencies = ['numpy>=1.22.4']
+dependencies = []
 authors = [{name = "CompSHS team"}]
 maintainers = [{name = "Simon Delarue", email = "simon.delarue@telecom-paris.fr"}]
 description = "Computational Social Sciences"
