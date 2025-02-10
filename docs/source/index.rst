@@ -6,6 +6,8 @@
 Welcome to compshs's documentation!
 ===================================
 
+[To be updated]
+
 .. toctree::
    :maxdepth: 1
    :caption: Getting started:
