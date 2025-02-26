@@ -1,4 +1,5 @@
 tqdm>=4.64
+spacy>=3.8.3
 
 # Documentation
 sphinx==5.0.2
