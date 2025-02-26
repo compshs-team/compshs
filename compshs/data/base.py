@@ -1,9 +1,3 @@
-"""
-Created in 2025
-@author: Simon Delarue <simon.delarue@telecom-paris.fr>
-"""
-
-
 class Dataset(dict):
     """Container object for datasets.
     Dictionary-like object that exposes its keys as attributes.
