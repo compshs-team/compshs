@@ -24,15 +24,21 @@ class TestPreprocess(unittest.TestCase):
             self.assertNotIn('lazier', doc)
 
         # Including stopwords
-        result = self.preprocessor.transform(self.corpus, exclude_stop_words=False)
+        self.preprocessor = Preprocess(lang='en_core_web_sm', exclude_stop_words=False)
+        self.preprocessor.fit()
+        result = self.preprocessor.transform(self.corpus)
         self.assertIn('the', result[0])
 
         # Punctuation included
-        result = self.preprocessor.transform(self.corpus, exclude_punctuation=False)
+        self.preprocessor = Preprocess(lang='en_core_web_sm', exclude_punctuation=False)
+        self.preprocessor.fit()
+        result = self.preprocessor.transform(self.corpus)
         self.assertIn('.', result[0])
 
         # Without lemmatization
-        result = self.preprocessor.transform(self.corpus, lemmatize=False)
+        self.preprocessor = Preprocess(lang='en_core_web_sm', lemmatize=False)
+        self.preprocessor.fit()
+        result = self.preprocessor.transform(self.corpus)
         self.assertEqual(result[1][-1], "lazier")
 
         # Empty corpus
@@ -40,5 +46,7 @@ class TestPreprocess(unittest.TestCase):
         self.assertEqual(result, [])
 
         # Batch size
-        result = self.preprocessor.transform(self.corpus, batch_size=2)
+        self.preprocessor = Preprocess(lang='en_core_web_sm', batch_size=2)
+        self.preprocessor.fit()
+        result = self.preprocessor.transform(self.corpus)
         self.assertEqual(len(result), len(self.corpus))
