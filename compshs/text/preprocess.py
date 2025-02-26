@@ -12,13 +12,22 @@ class Preprocess(BaseText):
     nlp:
         Spacy model build upon `lang` parameter.
     """
-    def __init__(self, lang: str = 'en_core_web_sm'):
-        self.lang = lang
+    def __init__(self):
+        super().__init__()
+        self.lang = None
         self.nlp = None
 
-    def fit(self):
-        """Fit algorithm to the data."""
+    def fit(self, lang: str = 'en_core_web_sm'):
+        """Fit algorithm to the data.
+
+        Parameters
+        ----------
+        lang: str
+            Spacy language model name (`en_core_web_sm`).
+        """
+        self.lang = lang
         self.nlp = load_lang(self.lang)
+
         return self
 
     def transform(self, corpus: list, exclude_stop_words: bool = True, exclude_punctuation: bool = True,
