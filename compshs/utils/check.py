@@ -21,7 +21,7 @@ def load_lang(lang: str = 'en_core_web_sm'):
         spacy.cli.download(lang)
 
         try:
-            spacy.load(lang)
+            return spacy.load(lang)
         except Exception as e:
             print(f'Failed to load the model: {e}.')
             print(f'Fall back to minimal blank model, i.e. tokenizer only.')
