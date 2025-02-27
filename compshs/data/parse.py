@@ -24,13 +24,6 @@ def from_directory(directory_path: str, dataset_name: str = None) -> Dataset:
     Returns
     -------
     dataset: :class:`Dataset`
-
-    Example
-    -------
-    >>> directory_path = 'path_to_txt_files'
-    >>> dataset = from_directory(directory_path)
-    >>> dataset.name
-    'path_to_txt_files'
     """
     directory_path = os.path.expanduser(directory_path)
     txt_files = glob(os.path.join(directory_path, "*.txt"))
