@@ -24,6 +24,13 @@ def from_directory(directory_path: str, dataset_name: str = None) -> Dataset:
     Returns
     -------
     dataset: :class:`Dataset`
+
+    Example
+    -------
+    >>> directory_path = 'path_to_txt_files'
+    >>> dataset = from_directory(directory_path)
+    >>> dataset.name
+    'path_to_txt_files'
     """
     directory_path = os.path.expanduser(directory_path)
     txt_files = glob(os.path.join(directory_path, "*.txt"))
@@ -70,13 +77,6 @@ def from_sql(database_path: str, dataset_name: str, table_name: str, document_co
     Returns
     -------
     dataset: :class:`Dataset`
-
-    Example
-    -------
-    >>> database_path = 'path_to_db/mydb.db'
-    >>> dataset = from_sql(database_path, 'my_dataset', 'my_table', 'data', 'document_name', 'document_content')
-    >>> dataset.name
-    'my_dataset'
     """
     (table_name,
      document_column_name,
