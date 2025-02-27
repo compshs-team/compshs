@@ -2,6 +2,7 @@
 Created in 2025
 @author: Simon Delarue <simon.delarue@telecom-paris.fr>
 """
+from contextlib import contextmanager
 import sqlite3
 from glob import glob
 import os
@@ -45,6 +46,15 @@ def from_directory(directory_path: str, dataset_name: str = None) -> Dataset:
     return Dataset(name=dataset_name, corpus=corpus)
 
 
+@contextmanager
+def get_db_connection(database_path: str):
+    conn = sqlite3.connect(os.path.expanduser(database_path))
+    try:
+        yield conn
+    finally:
+        conn.close()
+
+
 def from_sql(database_path: str, dataset_name: str, table_name: str, document_column_name: str, document_name_field: str,
              document_text_field: str) -> Dataset:
     """Load a corpus from a sqlite database where documents are stored as JSON entries.
@@ -85,24 +95,24 @@ def from_sql(database_path: str, dataset_name: str, table_name: str, document_co
         document_name_field,
         document_text_field))
 
-    conn = sqlite3.connect(os.path.expanduser(database_path))
-    cursor = conn.cursor()
+    with get_db_connection(database_path) as conn:
+        cursor = conn.cursor()
 
-    check_exist_table_name(conn, table_name)
-    check_exist_column_name(conn, table_name, document_column_name)
+        check_exist_table_name(conn, table_name)
+        check_exist_column_name(conn, table_name, document_column_name)
 
-    query = f'''
-        SELECT
-            json_extract("{document_column_name}", '$.{document_name_field}') AS document_name,
-            json_extract("{document_column_name}", '$.{document_text_field}') AS txt
-        FROM "{table_name}"
-    '''
-    cursor.execute(query)
+        query = f'''
+            SELECT
+                json_extract("{document_column_name}", '$.{document_name_field}') AS document_name,
+                json_extract("{document_column_name}", '$.{document_text_field}') AS txt
+            FROM "{table_name}"
+        '''
+        cursor.execute(query)
 
-    corpus = cursor.fetchall()
-    conn.close()
+        corpus = cursor.fetchall()
+        conn.close()
 
-    if dataset_name is None:
-        dataset_name = table_name
+        if dataset_name is None:
+            dataset_name = table_name
 
-    return Dataset(name=dataset_name, corpus=corpus)
+        return Dataset(name=dataset_name, corpus=corpus)

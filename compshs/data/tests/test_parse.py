@@ -53,7 +53,7 @@ class TestFromSQL(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.test_db_path = 'test_database.db'
+        cls.test_db_fd, cls.test_db_path = tempfile.mkstemp(suffix='.db')
         cls.connection = sqlite3.connect(cls.test_db_path)
         cls.cursor = cls.connection.cursor()
         cls.cursor.execute('''
@@ -71,11 +71,12 @@ class TestFromSQL(unittest.TestCase):
         cls.connection.commit()
 
     @classmethod
-    def tearDown(cls):
+    def tearDowClass(cls):
         cls.connection.close()
+        os.close(cls.test_db_fd)
         os.remove(cls.test_db_path)
 
-    def test_from_sql_valid(self):
+    def test_01_from_sql_valid(self):
         dataset = from_sql(self.test_db_path, 'my_dataset_name', 'test_table', 'data', 'title', 'content')
 
         self.assertEqual(dataset.name, 'my_dataset_name')
@@ -84,12 +85,12 @@ class TestFromSQL(unittest.TestCase):
         self.assertEqual(dataset.corpus[1], ('doc2', 'The lazier dog.'))
         self.assertIsInstance(dataset, Dataset)
 
-    def test_from_sql_default_dataset_name(self):
+    def test_02_from_sql_default_dataset_name(self):
         dataset = from_sql(self.test_db_path, None, 'test_table', 'data', 'title', 'content')
 
         self.assertEqual(dataset.name, 'test_table')
 
-    def test_from_sql_empty_table(self):
+    def test_03_from_sql_empty_table(self):
         self.cursor.execute('DROP TABLE test_table')
         self.cursor.execute('CREATE TABLE test_table (id INTEGER PRIMARY KEY, data TEXT)')
         self.connection.commit()
