@@ -71,7 +71,7 @@ class TestFromSQL(unittest.TestCase):
         cls.connection.commit()
 
     @classmethod
-    def tearDowClass(cls):
+    def tearDownClass(cls):
         cls.connection.close()
         os.close(cls.test_db_fd)
         os.remove(cls.test_db_path)
